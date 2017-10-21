@@ -1,0 +1,27 @@
+<%= link_to "Duties", duties_path %>
+<%= link_to "Supervisors List", supervisors_path %>
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Computer</th>
+    <th>Details</th>
+    <th>Fixed</th>
+    <th>Reporter</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @problems.each do |p| %>
+  <tr>
+    <td><%= p.time.localtime %></td>
+    <td><%= p.computer %></td>
+    <td><%= p.details %></td>
+    <td><%= check_box "problem", "fixed", {:checked => p.fixed, :disabled => true} %>
+    </td>
+    <td><%= @supervisors.find(p.supervisor_id).fullname %></td>
+    <td><%= link_to "Edit", edit_problem_path(p) %></td>
+    <td><%= link_to "Delete", problem_path(id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to "Report new problem", new_problem_path %>

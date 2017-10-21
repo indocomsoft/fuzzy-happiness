@@ -1,0 +1,24 @@
+<%= link_to "Back to Problem Report", problems_path %>
+<%= form_for @problem do |f| %>
+<table>
+  <tr>
+    <td>Supervisor:</td>
+    <td>
+      <%= f.collection_select :supervisor_id, @supervisors, :id, :fullname %>
+    </td>
+  </tr>
+  <tr>
+    <td>Computer number:</td>
+    <td><%= f.text_field :computer %></td>
+  </tr>
+  <tr>
+    <td>Details:</td>
+    <td><%= f.text_area :details %></td>
+  </tr>
+  <tr>
+    <td>Fixed:</td>
+    <td><%= f.check_box :fixed %></td>
+  </tr>
+</table>
+<%= f.submit "Submit" %>
+<% end %>
