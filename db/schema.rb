@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20171021060739) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "duties", force: :cascade do |t|
     t.date "date"
     t.boolean "dropped"
-    t.integer "supervisor_id"
+    t.bigint "supervisor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["supervisor_id"], name: "index_duties_on_supervisor_id"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20171021060739) do
     t.datetime "time"
     t.text "details"
     t.boolean "fixed"
-    t.integer "supervisor_id"
+    t.bigint "supervisor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["supervisor_id"], name: "index_problems_on_supervisor_id"
@@ -40,4 +43,6 @@ ActiveRecord::Schema.define(version: 20171021060739) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "duties", "supervisors"
+  add_foreign_key "problems", "supervisors"
 end
