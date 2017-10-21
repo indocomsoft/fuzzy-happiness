@@ -1,0 +1,19 @@
+<%= link_to "Add new user", new_supervisor_path %>
+<table>
+  <tr>
+    <th>Full Name</th>
+    <th>Phone number</th>
+    <th>Email address</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @supervisors.each do |p| %>
+  <tr>
+    <td><%= p.fullname %></td>
+    <td><%= p.phone_number %></td>
+    <td><%= p.email %></td>
+    <td><%= link_to "Edit", edit_supervisor_path(p) %></td>
+    <td><%= link_to "Delete", supervisor_path(id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
