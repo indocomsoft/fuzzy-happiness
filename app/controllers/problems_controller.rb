@@ -45,6 +45,5 @@ class ProblemsController < ApplicationController
   private
   def problem_params
     params.require(:problem).permit(:supervisor_id, :computer, :details, :fixed)
-    #params[:computer] = params[:computer].to_i
   end
 end
