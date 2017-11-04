@@ -1,0 +1,20 @@
+<%= link_to "Back to Duty list", duties_path %>
+<h1>List of dropped duties</h1>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Supervisor</th>
+    <th></th>
+  </tr>
+  <% @dropped.each do |d| %>
+  <tr>
+    <td><%= d.date.strftime("%a, %d/%m/%Y") %></td>
+    <td><%= @supervisors.find(d.supervisor_id).fullname %></td>
+    <% if d.dropped %>
+    <td>(Dropped) <%= link_to "grab", edit_duty_path(d) %></td>
+    <% else %>
+    <td><%= link_to "drop", edit_duty_path(id: d.id), data: { confirm: 'Are you sure?' } %></td>
+    <% end %> 
+  </tr>
+  <% end %>
+</table>

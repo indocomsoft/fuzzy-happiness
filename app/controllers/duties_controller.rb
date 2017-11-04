@@ -52,6 +52,11 @@ class DutiesController < ApplicationController
     end
   end
 
+  def dropped
+    @dropped = Duty.where({dropped: true})
+    @supervisors = Supervisor.all
+  end
+
   private
   def duty_params
     params.require(:duty).permit(:date, :supervisor_id)
