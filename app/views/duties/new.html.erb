@@ -1,0 +1,17 @@
+<%= link_to "Back to Duty Report", duties_path %>
+<%= form_for @duty do |f| %>
+<table>
+  <tr>
+    <td>Supervisor:</td>
+    <td>
+      <%= f.collection_select :supervisor_id, @supervisors, :id, :fullname %>
+    </td>
+  </tr>
+  <tr>
+    <td>Date:</td>
+    <td><%= @date %></td>
+  </tr>
+</table>
+<%= hidden_field_tag :date, value:@date %>
+<%= f.submit "Submit" %>
+<% end %>

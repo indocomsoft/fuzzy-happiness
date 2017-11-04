@@ -1,0 +1,32 @@
+<%= link_to "Problem Report", problems_path %>
+<%= link_to "Supervisors List", supervisors_path %>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Supervisor</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% for i in 0..6 %>
+  <% curdate = @basedate + i %>
+  <% duty = @duties.find_by(date: curdate) %>
+  <tr>
+    <td><%= curdate.strftime("%a, %d/%m/%Y") =%></td>
+    <% if duty == nil %>
+    <td>Empty</td>
+    <td><%= link_to "grab", new_duty_path(date: curdate) %></td>
+    </td>
+    <% else %>
+    <td><%= @supervisors.find(duty.supervisor_id).fullname %></td>
+    <% if duty.dropped %>
+    <td>(Dropped) <%= link_to "grab", edit_duty_path(duty) %></td>
+    <% else %>
+    <td><%= link_to "drop", edit_duty_path(id: duty.id), data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<%= link_to "Prev week", duties_path(date: @basedate - 7) %>
+<%= link_to "Next week", duties_path(date: @basedate + 7) %>
