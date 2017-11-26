@@ -1,8 +1,7 @@
+# Problems Controller
 class ProblemsController < ApplicationController
-
   def index
     @problems = Problem.all
-    @supervisors = Supervisor.all
   end
 
   def new
@@ -37,12 +36,11 @@ class ProblemsController < ApplicationController
 
   def destroy
     problem = Problem.find params[:id]
-    if problem.destroy
-      redirect_to problems_path
-    end
+    redirect_to problems_path if problem.destroy
   end
 
   private
+
   def problem_params
     params.require(:problem).permit(:supervisor_id, :computer, :details, :fixed)
   end

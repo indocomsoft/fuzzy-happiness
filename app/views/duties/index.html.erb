@@ -20,7 +20,7 @@
     <td><%= link_to "grab", new_duty_path(date: curdate) %></td>
     </td>
     <% else %>
-    <td><%= @supervisors.find(duty.supervisor_id).fullname %></td>
+    <td><%= duty.supervisor.fullname %></td>
     <% if duty.dropped %>
     <td>(Dropped) <%= link_to "grab", edit_duty_path(duty) %></td>
     <% else %>

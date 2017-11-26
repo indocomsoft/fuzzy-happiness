@@ -1,3 +1,4 @@
+# Supervisors Controller
 class SupervisorsController < ApplicationController
   def index
     @supervisors = Supervisor.all
@@ -31,12 +32,11 @@ class SupervisorsController < ApplicationController
 
   def destroy
     supervisor = Supervisor.find params[:id]
-    if supervisor.destroy
-      redirect_to supervisors_path
-    end
+    redirect_to supervisors_path if supervisor.destroy
   end
 
   private
+
   def supervisor_params
     params.require(:supervisor).permit(:fullname, :phone_number, :email)
   end

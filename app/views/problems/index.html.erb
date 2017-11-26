@@ -17,7 +17,7 @@
     <td><%= p.details %></td>
     <td><%= check_box "problem", "fixed", {:checked => p.fixed, :disabled => true} %>
     </td>
-    <td><%= @supervisors.find(p.supervisor_id).fullname %></td>
+    <td><%= p.supervisor.fullname %></td>
     <td><%= link_to "Edit", edit_problem_path(p) %></td>
     <td><%= link_to "Delete", problem_path(id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

@@ -1,7 +1,6 @@
 class DutiesController < ApplicationController
 
   def index
-    @supervisors = Supervisor.all
     @duties = Duty.all
     if params.has_key? "date"
       temp = Date.parse(params[:date])
@@ -54,7 +53,6 @@ class DutiesController < ApplicationController
 
   def dropped
     @dropped = Duty.where({dropped: true})
-    @supervisors = Supervisor.all
   end
 
   private

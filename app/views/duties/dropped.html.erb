@@ -9,7 +9,7 @@
   <% @dropped.each do |d| %>
   <tr>
     <td><%= d.date.strftime("%a, %d/%m/%Y") %></td>
-    <td><%= @supervisors.find(d.supervisor_id).fullname %></td>
+    <td><%= d.supervisor.fullname %></td>
     <% if d.dropped %>
     <td>(Dropped) <%= link_to "grab", edit_duty_path(d) %></td>
     <% else %>
